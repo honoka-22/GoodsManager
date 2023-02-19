@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Group {
+            
+            if viewModel.userSession == nil {
+                LoginView()
+            } else {
+                MainTabView()
+                    .foregroundColor(Color("fontColor"))
+                    .environmentObject(AuthViewModel())
+            }
+        }
     }
 }
 
