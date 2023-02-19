@@ -34,7 +34,7 @@ class PostTradingViewModel: ObservableObject {
     /// 受け取る金額
     @Published var salesPrice = 0
     
-    @Published var passGoods: [String: Any]
+//    @Published var passGoods: [String: Any]
     
     @Published var memo = ""
     
