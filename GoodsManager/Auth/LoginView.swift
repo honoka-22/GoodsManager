@@ -35,7 +35,7 @@ struct LoginView: View {
             TextButton(label: "Login") {
                 // パスワード・メールアドレスの入力チェック
                 viewModel.login(withEmail: mail, password: password)
-            }
+            }.padding()
             
 
             Button {
@@ -46,7 +46,7 @@ struct LoginView: View {
             
             TextButton(label: "SignUp") {
                 isShow.toggle()
-            }
+            }.padding()
             .fullScreenCover(isPresented: $isShow) {
                 SignUpView(isShow: $isShow)
                     .environmentObject(AuthViewModel())

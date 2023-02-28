@@ -12,10 +12,9 @@ struct PostTradingView: View {
     @State var isShowWindow = false
     @State var message = ""
     @Binding var isShow: Bool
-    let stepCount = 3
+    let stepCount = 4
     @State var selectStep = 1
-    
-    
+
     var body: some View {
         ZStack {
             Color(UIColor.quaternarySystemFill).ignoresSafeArea(.all)
@@ -23,7 +22,7 @@ struct PostTradingView: View {
             VStack(spacing: 0) {
                 ToolBar(colors: AppColors(), isShowBackButton: true, title: "取引登録") {
                     isShow.toggle()
-                }
+                }.ignoresSafeArea(.keyboard, edges: .all)
                 
                 StepView(stepCount: stepCount, selectStep: $selectStep)
                     .padding()
@@ -67,10 +66,13 @@ struct PostTradingView: View {
                                 message = "未記入の項目があります"
                                 return
                             }
-                            if viewModel.selectService == "" {
+                            if viewModel.selectService == "" ||
+                                viewModel.selectType == "" ||
+                                viewModel.selectMethod == "" {
                                 message = "未選択の項目があります"
                                 return
                             }
+                            
                             selectStep += 1
                             message = ""
                             
@@ -81,12 +83,19 @@ struct PostTradingView: View {
                             selectStep += 1
                             
                         } else  {
+                            viewModel.registration()
                             isShow.toggle()
                         }
                     }.cornerRadius(10).padding()
+                    
             }
             if isShowWindow {
-                
+                Color.gray.opacity(0.5).ignoresSafeArea(.all)
+                if selectStep == 2 {
+                    AddPassGoodsView(passItems: $viewModel.passItems, isShow: $isShowWindow)
+                } else if selectStep == 3 {
+                    AddGiveGoodsView(giveItems: $viewModel.giveItems, isShow: $isShowWindow)
+                }
             }
         }
     }

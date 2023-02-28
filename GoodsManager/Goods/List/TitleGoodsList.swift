@@ -11,12 +11,7 @@ struct TitleGoodsList: View {
 
     let title: TitleMyGoods
     @ObservedObject var viewModel: GoodsListViewModel
-    
     @State var isShowList = false
-    
-//    @Binding var selectProduct: ProductMyGoods?
-//    @Binding var myList: MyList
-//    @State var selectGoods: MyGoods?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,13 +21,15 @@ struct TitleGoodsList: View {
                 ForEach(title.products) { product in
                     Divider()
                     NormalListCell(text: product.name)
+                        .contentShape(Rectangle())
                         .onTapGesture {
-                            if product.goods.count == 1 {
-                                viewModel.selectGoods = product.goods[0]
+                            if product.categorys.count == 1 {
+                                viewModel.selectGoods = product.categorys[0].goods
                                 viewModel.isShowInfo.toggle()
                                 
                             } else {
                                 viewModel.selectProduct = product
+                                viewModel.getCategory()
                                 viewModel.myList = .product
                             }
                         }

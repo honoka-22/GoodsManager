@@ -84,7 +84,7 @@ struct ImageEditView: View {
             
             TextButton(label: "完了") {
                 isShow.toggle()
-            }
+            }.padding()
         }
     }
 }

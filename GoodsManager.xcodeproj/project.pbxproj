@@ -25,6 +25,13 @@
 		7F212928299EE97C002FAF85 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F212927299EE97C002FAF85 /* PlusButton.swift */; };
 		7F21292A29A08AE0002FAF85 /* ProductGoodsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21292929A08ADF002FAF85 /* ProductGoodsList.swift */; };
 		7F21292C29A08BD3002FAF85 /* GoodsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21292B29A08BD3002FAF85 /* GoodsList.swift */; };
+		7F21293229A24526002FAF85 /* AddPassGoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293129A24526002FAF85 /* AddPassGoodsView.swift */; };
+		7F21293429A24558002FAF85 /* AddGiveGoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293329A24558002FAF85 /* AddGiveGoodsView.swift */; };
+		7F21293829A24E27002FAF85 /* AddGiveGoodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293729A24E27002FAF85 /* AddGiveGoodsViewModel.swift */; };
+		7F21293A29A2614F002FAF85 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293929A2614F002FAF85 /* StatusViewModel.swift */; };
+		7F21293D29A5B6E1002FAF85 /* AddPassGoodsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293C29A5B6DF002FAF85 /* AddPassGoodsViewModel.swift */; };
+		7F21293F29AC2834002FAF85 /* Trading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21293E29AC2833002FAF85 /* Trading.swift */; };
+		7F21294129AC95A1002FAF85 /* GoodsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F21294029AC95A0002FAF85 /* GoodsEditView.swift */; };
 		7F3A97FF298A2E2B00BE8A2E /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A97FE298A2E2B00BE8A2E /* Goods.swift */; };
 		7F3A9806298CD13500BE8A2E /* CheckListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9805298CD13400BE8A2E /* CheckListCell.swift */; };
 		7F3A9808298CD1D800BE8A2E /* ListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9807298CD1D800BE8A2E /* ListTitle.swift */; };
@@ -48,7 +55,7 @@
 		7F3A9845299B0D0100BE8A2E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9844299B0D0000BE8A2E /* ImagePicker.swift */; };
 		7F3A9847299B104100BE8A2E /* GoodsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9846299B104100BE8A2E /* GoodsWindow.swift */; };
 		7F3A9849299B150A00BE8A2E /* ImageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9848299B150A00BE8A2E /* ImageEditView.swift */; };
-		7F888C0B2987947600C375B5 /* TradingRegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F888C0A2987947600C375B5 /* TradingRegistrationViewModel.swift */; };
+		7F888C0B2987947600C375B5 /* TradingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F888C0A2987947600C375B5 /* TradingViewModel.swift */; };
 		7F888C1129889ED100C375B5 /* TradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F888C1029889ED100C375B5 /* TradingView.swift */; };
 		7F888C142988A98600C375B5 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F888C132988A98600C375B5 /* GuideView.swift */; };
 		7F888C182988E1FC00C375B5 /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F888C172988E1FC00C375B5 /* StepView.swift */; };
@@ -111,6 +118,13 @@
 		7F212927299EE97C002FAF85 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		7F21292929A08ADF002FAF85 /* ProductGoodsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductGoodsList.swift; sourceTree = "<group>"; };
 		7F21292B29A08BD3002FAF85 /* GoodsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsList.swift; sourceTree = "<group>"; };
+		7F21293129A24526002FAF85 /* AddPassGoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassGoodsView.swift; sourceTree = "<group>"; };
+		7F21293329A24558002FAF85 /* AddGiveGoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiveGoodsView.swift; sourceTree = "<group>"; };
+		7F21293729A24E27002FAF85 /* AddGiveGoodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiveGoodsViewModel.swift; sourceTree = "<group>"; };
+		7F21293929A2614F002FAF85 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
+		7F21293C29A5B6DF002FAF85 /* AddPassGoodsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPassGoodsViewModel.swift; sourceTree = "<group>"; };
+		7F21293E29AC2833002FAF85 /* Trading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trading.swift; sourceTree = "<group>"; };
+		7F21294029AC95A0002FAF85 /* GoodsEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsEditView.swift; sourceTree = "<group>"; };
 		7F3A97FE298A2E2B00BE8A2E /* Goods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
 		7F3A9805298CD13400BE8A2E /* CheckListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListCell.swift; sourceTree = "<group>"; };
 		7F3A9807298CD1D800BE8A2E /* ListTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTitle.swift; sourceTree = "<group>"; };
@@ -134,7 +148,7 @@
 		7F3A9844299B0D0000BE8A2E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7F3A9846299B104100BE8A2E /* GoodsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsWindow.swift; sourceTree = "<group>"; };
 		7F3A9848299B150A00BE8A2E /* ImageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditView.swift; sourceTree = "<group>"; };
-		7F888C0A2987947600C375B5 /* TradingRegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingRegistrationViewModel.swift; sourceTree = "<group>"; };
+		7F888C0A2987947600C375B5 /* TradingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingViewModel.swift; sourceTree = "<group>"; };
 		7F888C1029889ED100C375B5 /* TradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingView.swift; sourceTree = "<group>"; };
 		7F888C132988A98600C375B5 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		7F888C172988E1FC00C375B5 /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
@@ -252,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				7F212923299E3BF1002FAF85 /* PTStep03.swift */,
+				7F21293329A24558002FAF85 /* AddGiveGoodsView.swift */,
+				7F21293729A24E27002FAF85 /* AddGiveGoodsViewModel.swift */,
 			);
 			path = Step03;
 			sourceTree = "<group>";
@@ -260,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				7F212921299E3BE4002FAF85 /* PTStep02.swift */,
+				7F21293129A24526002FAF85 /* AddPassGoodsView.swift */,
+				7F21293C29A5B6DF002FAF85 /* AddPassGoodsViewModel.swift */,
 			);
 			path = Step02;
 			sourceTree = "<group>";
@@ -278,9 +296,17 @@
 			isa = PBXGroup;
 			children = (
 				7FAB66322987848C0097B800 /* GoodsView.swift */,
+				7F21294029AC95A0002FAF85 /* GoodsEditView.swift */,
 				7F21290E299DEBCE002FAF85 /* GoodsViewModel.swift */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		7F21293B29A44BD7002FAF85 /* AddTitle */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddTitle;
 			sourceTree = "<group>";
 		};
 		7F3A9809298E573C00BE8A2E /* List */ = {
@@ -331,6 +357,7 @@
 				7FAB6629298781DB0097B800 /* HomeView.swift */,
 				7FAB6634298786E60097B800 /* HomeButton.swift */,
 				7FAB662B298781EE0097B800 /* StatusView.swift */,
+				7F21293929A2614F002FAF85 /* StatusViewModel.swift */,
 				7FAB662D298782070097B800 /* StatusItem.swift */,
 				7F3A9846299B104100BE8A2E /* GoodsWindow.swift */,
 			);
@@ -340,6 +367,7 @@
 		7FAB65E4298375DB0097B800 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7F21293B29A44BD7002FAF85 /* AddTitle */,
 				7FAB65E829838F650097B800 /* ColorCustomer */,
 				7FAB65EE29838FD50097B800 /* SettingView.swift */,
 				7F3A982129999DB400BE8A2E /* MyTitleView.swift */,
@@ -424,7 +452,7 @@
 		7FAB663A29878F430097B800 /* Trading */ = {
 			isa = PBXGroup;
 			children = (
-				7F888C0A2987947600C375B5 /* TradingRegistrationViewModel.swift */,
+				7F888C0A2987947600C375B5 /* TradingViewModel.swift */,
 				7F212914299E3919002FAF85 /* TradingList.swift */,
 				7F888C1029889ED100C375B5 /* TradingView.swift */,
 			);
@@ -483,6 +511,7 @@
 				7FAB663629878AC40097B800 /* User.swift */,
 				7F9E15E1298A032C004F950D /* Title.swift */,
 				7F3A97FE298A2E2B00BE8A2E /* Goods.swift */,
+				7F21293E29AC2833002FAF85 /* Trading.swift */,
 				7F3A98132991EEC200BE8A2E /* FirebaseFunction.swift */,
 				7F3A982E2999C65400BE8A2E /* FirebaseStorageFunction.swift */,
 				7F3A98192993394200BE8A2E /* CheckCharacter.swift */,
@@ -596,6 +625,7 @@
 				7F3A982629999DFC00BE8A2E /* MyTitleViewModel.swift in Sources */,
 				7F3A983D299A33E200BE8A2E /* MyGoodsPostViewModel.swift in Sources */,
 				7FAB65EC29838F9F0097B800 /* Color.swift in Sources */,
+				7F21293A29A2614F002FAF85 /* StatusViewModel.swift in Sources */,
 				7FAB65E7298376460097B800 /* ToolBar.swift in Sources */,
 				7FAB66282983D8AA0097B800 /* MainTabView.swift in Sources */,
 				7FAB663729878AC40097B800 /* User.swift in Sources */,
@@ -612,6 +642,7 @@
 				7F3A98282999A00C00BE8A2E /* GoodsCell.swift in Sources */,
 				7F212909299CBF14002FAF85 /* ItemCountCell.swift in Sources */,
 				7F212922299E3BE4002FAF85 /* PTStep02.swift in Sources */,
+				7F21293429A24558002FAF85 /* AddGiveGoodsView.swift in Sources */,
 				7F21290D299CF938002FAF85 /* CountWindow.swift in Sources */,
 				7F3A9841299A3D8B00BE8A2E /* MGStep02.swift in Sources */,
 				7FAB65EF29838FD50097B800 /* SettingView.swift in Sources */,
@@ -619,13 +650,15 @@
 				7F2128FF299CB0B0002FAF85 /* NewBaseDataWindow.swift in Sources */,
 				7FAB66222983D6FA0097B800 /* BarcodeReadrUIView.swift in Sources */,
 				7F888C1129889ED100C375B5 /* TradingView.swift in Sources */,
+				7F21293F29AC2834002FAF85 /* Trading.swift in Sources */,
 				7F212924299E3BF1002FAF85 /* PTStep03.swift in Sources */,
 				7F3A981A2993394200BE8A2E /* CheckCharacter.swift in Sources */,
 				7F3A98142991EEC200BE8A2E /* FirebaseFunction.swift in Sources */,
 				7F212928299EE97C002FAF85 /* PlusButton.swift in Sources */,
 				7FAB65F5298396700097B800 /* TextButton.swift in Sources */,
-				7F888C0B2987947600C375B5 /* TradingRegistrationViewModel.swift in Sources */,
+				7F888C0B2987947600C375B5 /* TradingViewModel.swift in Sources */,
 				7F21291E299E3B79002FAF85 /* PostTradingViewModel.swift in Sources */,
+				7F21293229A24526002FAF85 /* AddPassGoodsView.swift in Sources */,
 				7F3A981629922A7D00BE8A2E /* CheckListView.swift in Sources */,
 				7FAB66262983D7C50097B800 /* TestSampleUI.swift in Sources */,
 				7F3A9845299B0D0100BE8A2E /* ImagePicker.swift in Sources */,
@@ -635,7 +668,9 @@
 				7FC2B01C293994F9001A081F /* ContentView.swift in Sources */,
 				7F212920299E3BCE002FAF85 /* PTStep01.swift in Sources */,
 				7F3A97FF298A2E2B00BE8A2E /* Goods.swift in Sources */,
+				7F21293829A24E27002FAF85 /* AddGiveGoodsViewModel.swift in Sources */,
 				7FAB65F129838FFD0097B800 /* ChangeColorsView.swift in Sources */,
+				7F21294129AC95A1002FAF85 /* GoodsEditView.swift in Sources */,
 				7FAB65FB2983983D0097B800 /* SearchField.swift in Sources */,
 				7F3A9847299B104100BE8A2E /* GoodsWindow.swift in Sources */,
 				7F21290F299DEBCE002FAF85 /* GoodsViewModel.swift in Sources */,
@@ -645,6 +680,7 @@
 				7FAB66332987848C0097B800 /* GoodsView.swift in Sources */,
 				7F3A981C2995C74900BE8A2E /* GoodsInfoView.swift in Sources */,
 				7F3A982F2999C65500BE8A2E /* FirebaseStorageFunction.swift in Sources */,
+				7F21293D29A5B6E1002FAF85 /* AddPassGoodsViewModel.swift in Sources */,
 				7F212918299E3B31002FAF85 /* PostTradingView.swift in Sources */,
 				7FAB661E2983D69B0097B800 /* BarCodeViewModel.swift in Sources */,
 				7F212915299E3919002FAF85 /* TradingList.swift in Sources */,

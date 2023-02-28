@@ -21,36 +21,44 @@ struct ChangeColorsView: View {
                     .padding(.bottom)
 
                 VStack(spacing: 0) {
+                    VStack() {
+                        ColorPicker("メインカラー1",
+                                    selection : $colors.selectedMainColor1,
+                                    supportsOpacity: false)
+                        
+                        ColorPicker("メインカラー2",
+                                    selection : $colors.selectedMainColor2,
+                                    supportsOpacity: false).padding(.bottom)
+                        
+                        HStack {
+                            Text("メインカラー1の上に載せる色")
+                                .font(.footnote)
+                            Spacer()
+                        }.padding(.top)
+                        
+                        ColorPicker("アクセントカラー1",
+                                    selection : $colors.selectedAccentColor1,
+                                    supportsOpacity: false)
+                
+                        ColorPicker("アクセントカラー2",
+                                    selection : $colors.selectedAccentColor2,
+                                    supportsOpacity: false)
+                        
+                        HStack {
+                            Text("メインカラー2の上に載せる色")
+                                .font(.footnote)
+                            Spacer()
+                        }.padding(.top)
+                        
+                        ColorPicker("アクセントカラー3",
+                                    selection : $colors.selectedAccentColor3,
+                                    supportsOpacity: false)
+                        
+                    }
+                    .padding()
+                    .foregroundColor(Color("fontColor"))
+                    .background(.white)
                     
-                    ColorPicker("メインカラー1",
-                                selection : $colors.selectedMainColor1,
-                                supportsOpacity: false).padding()
-                    
-                    ColorPicker("メインカラー2",
-                                selection : $colors.selectedMainColor2,
-                                supportsOpacity: false).padding()
-                    
-                    HStack {
-                        Text("メインカラー1の上に載せる色")
-                            .font(.title3)
-                        Spacer()
-                    }.padding(.top)
-                    ColorPicker("アクセントカラー1",
-                                selection : $colors.selectedAccentColor1,
-                                supportsOpacity: false).padding()
-            
-                    ColorPicker("アクセントカラー2",
-                                selection : $colors.selectedAccentColor2,
-                                supportsOpacity: false).padding()
-                    
-                    HStack {
-                        Text("メインカラー2の上に載せる色")
-                            .font(.body)
-                        Spacer()
-                    }.padding(.top)
-                    ColorPicker("アクセントカラー3",
-                                selection : $colors.selectedAccentColor3,
-                                supportsOpacity: false).padding()
                     Divider()
                     
                     HStackButton(
@@ -67,7 +75,6 @@ struct ChangeColorsView: View {
                             colors.changeColors()
                         })
                 }
-                .foregroundColor(.black).background(.white)
                 .cornerRadius(10)
                 .padding()
                 
@@ -80,7 +87,7 @@ struct ChangeColorsView: View {
                             isShow.toggle()
                         }
                     } message: {
-                        Text("データが保存されていません。本当に閉じますか?")
+                        Text("データが保存されていません。\n本当に閉じますか?")
                     }
             
         }.onAppear {

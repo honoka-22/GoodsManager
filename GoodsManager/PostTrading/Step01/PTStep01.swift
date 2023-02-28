@@ -15,6 +15,7 @@ struct PTStep01: View {
             HStack {
                 Text("お名前").font(.footnote)
                 Text("必須").font(.footnote).foregroundColor(.red)
+                
             }
             
             TextField("", text: $viewModel.name)

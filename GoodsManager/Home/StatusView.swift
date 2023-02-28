@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct StatusView: View {
+    @ObservedObject var viewModel = StatusViewModel()
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("今月のお取引")
+                Text("現在のお取引")
                     .padding(.leading, 20)
                 Spacer()
             }
             HStack {
-                StatusItem(title: "取引中", count: 1) {
+                StatusItem(title: "取引中", count: viewModel.nowTrading) {
                     
                 }
                 
-                StatusItem(title: "予約", count: 10) {
+                StatusItem(title: "予約", count: viewModel.reservation) {
                     
                 }
                 
-                StatusItem(title: "完了", count: 100) {
+                StatusItem(title: "完了", count: viewModel.completed) {
                     
                 }
             }

@@ -69,7 +69,6 @@ struct MyGoodsPostView: View {
                             viewModel.baseData = viewModel1.baseData
                             message = ""
                             viewModel.checkGoods()
-                            viewModel.makeCheckList()
                             selectStep += 1
                             
                         } else if selectStep == 2 {
@@ -96,9 +95,3 @@ struct MyGoodsPostView: View {
         }
     }
 }
-
-//struct MyGoodsPostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MyGoodsPostView()
-//    }
-//}

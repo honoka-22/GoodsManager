@@ -68,9 +68,3 @@ struct MGStep03: View {
     }
 }
 
-
-//struct MyGoodsStep04_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MyGoodsStep04()
-//    }
-//}

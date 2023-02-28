@@ -18,7 +18,8 @@ class MGStep01ViewModel: ObservableObject {
     
     @Published var baseData = GoodsBase()
     @Published var newDataType = NewDataType.product
-    
+    @Published var code = ""
+    @Published var isEdit = true
     let defaultLabel = "未選択"
     
     @Published var titleLabel = "未選択"
@@ -39,6 +40,29 @@ class MGStep01ViewModel: ObservableObject {
     init() {
         firebase.getTitles() { titles in
             self.titles = titles
+        }
+    }
+    
+    func setCode() {
+        firebase.getGoods(code: code) { goods in
+            guard let goods = goods else {
+                return
+            }
+            self.isEdit = false
+            self.baseData = goods.base
+            
+            if let title = self.baseData.title {
+                self.titleLabel = title.name
+            }
+            if let product = self.baseData.product {
+                self.productLabel = product.name
+            }
+            if let category = self.baseData.category1 {
+                self.Category1Lagel = category.name
+            }
+            if let category = self.baseData.category2 {
+                self.Category2Lagel = category.name
+            }
         }
     }
     

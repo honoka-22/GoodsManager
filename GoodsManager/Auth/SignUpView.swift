@@ -57,12 +57,13 @@ struct SignUpView: View {
                 // パスワード・メールアドレスの入力チェック
                 viewModel.register(withEmail: mail,
                                    password: password)
-            }
+            }.padding()
+            
             
             /// ログイン画面に遷移する
             TextButton(label: "Login") {
                 isShow.toggle()
-            }
+            }.padding()
             
             Spacer()
             

@@ -20,19 +20,16 @@ struct Category: Identifiable, Decodable {
 
 struct Goods: Identifiable, Decodable {
     let id: String
-    var title: Title
-    var product: Product
-    var category1: Category?
-    var category2: Category?
-    var counts: [Count]
+    var base = GoodsBase()
 }
 
 struct MyGoods: Identifiable, Decodable {
     let id: String
-    var title: String = ""
-    var product: String = ""
-    var category1: String = ""
-    var category2: String = ""
+    var base = GoodsBase()
+//    var title: String = ""
+//    var product: String = ""
+//    var category1: String = ""
+//    var category2: String = ""
     var code: String = ""
     var price: Int = 0
     var images = [String]()

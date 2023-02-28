@@ -27,7 +27,7 @@ struct TextButton: View {
                     .clipShape(Capsule())
             }
 
-        }.frame(height: rectangleHeight).padding()
+        }.frame(height: rectangleHeight)
     }
 }
 

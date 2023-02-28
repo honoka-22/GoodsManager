@@ -8,39 +8,27 @@
 import SwiftUI
 
 struct ProductGoodsList: View {
-    @State var isShowInfo = false
-    
-    let product: ProductMyGoods
-    @State var selectGoods: MyGoods?
+    @ObservedObject var viewModel: GoodsListViewModel
     
     var body: some View {
-        VStack {
-            ForEach(product.goods) { goods in
-                Divider()
-                NormalListCell(text: goods.category1 + " " + goods.category2)
-                    .onTapGesture {
-                        selectGoods = goods
-                        isShowInfo.toggle()
-                        
-                    }
+        VStack(spacing: 0) {
+            SortMenu(ascending: {
+                viewModel.goodsList.sort{ $0.name < $1.name }
+            }) {
+                viewModel.goodsList.sort{ $0.name > $1.name }
             }
             
-
-        }
-        
-        .background(.white)
-        .cornerRadius(10.0)
-        .padding(.horizontal)
-        .fullScreenCover(isPresented: $isShowInfo) {
-            if let goods = selectGoods {
-                GoodsView(goods: goods, isShow: $isShowInfo)
+            List {
+                ForEach(viewModel.goodsList) { goods in
+                    NormalListCell(text: goods.name)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            viewModel.selectGoods = goods.goods
+                            viewModel.isShowInfo.toggle()
+                        }
+                }
             }
         }
+        
     }
 }
-
-//struct ProductGoodsList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductGoodsList()
-//    }
-//}

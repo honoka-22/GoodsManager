@@ -10,6 +10,7 @@ import SwiftUI
 struct GoodsView: View {
     @ObservedObject var viewModel: GoodsViewModel
     @Binding var isShow: Bool
+    @State var isShowEdit = false
     
     init(goods: MyGoods, isShow: Binding<Bool>) {
         viewModel = GoodsViewModel(goods: goods)
@@ -23,7 +24,7 @@ struct GoodsView: View {
                 isShow.toggle()
             }
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 if 0 < viewModel.images.count {
                     GoodsImages(images: $viewModel.images)
                 } else {
@@ -51,26 +52,39 @@ struct GoodsView: View {
                             ItemCountCell(counts: counts)
                             Divider()
                         }
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 30)
                     
                 }
                 
+                
+                
             }
-
-            
-            
-            
-            
-            
-
-            
             Spacer()
+            
+            HStack {
+                Button("テンプレートをコピー") {
+                    UIPasteboard.general.string = viewModel.makeTemplate()
+                }
+                .foregroundColor(.blue)
+                
+                Spacer()
+                
+                TextButton(label: "編集") {
+                    isShowEdit.toggle()
+                }
+                
+            }.padding()
+        }.fullScreenCover(isPresented: $isShowEdit) {
+            GoodsEditView(
+                viewModel: MyGoodsPostViewModel(
+                    baseData: viewModel.goods.base,
+                    images: viewModel.images,
+                    counts: viewModel.counts),
+                isShow: $isShowEdit,
+                action: viewModel.getInfo)
         }
     }
 }
 
-//struct GoodsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GoodsView()
-//    }
-//}

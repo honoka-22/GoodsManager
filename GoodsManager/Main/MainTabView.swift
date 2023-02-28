@@ -29,8 +29,8 @@ struct MainTabView: View {
                 GoodsList()
                 
             } else if selected == 4 {
-//                GuideView(colors: colors)
-                TestSampleUI()
+                GuideView(colors: colors)
+//                TestSampleUI()
             }
             
             // TODO: 各種アイコン用意する
@@ -40,11 +40,6 @@ struct MainTabView: View {
                         text: "ホーム",
                         selected: $selected)
                 
-                // FIXME: 余裕があれば追加する
-//                TabIcon(tab: 1,
-//                        image: "calendar",
-//                        text: "カレンダー",
-//                        selected: $selected)
                 
                 TabIcon(tab: 2,
                         image: "repeat.circle",

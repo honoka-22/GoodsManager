@@ -11,7 +11,7 @@ struct HomeView: View {
     @ObservedObject var colors: AppColors
     @State var isShowTRView = false
     @State var isShowGRView = false
-    @ObservedObject var viewModel = TradingRegistrationViewModel()
+    @ObservedObject var viewModel = TradingViewModel()
     @Binding var selected: Int
     
     var body: some View {

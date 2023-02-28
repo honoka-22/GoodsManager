@@ -11,7 +11,6 @@ struct MenuLabel: View {
     @State private var rectangleHeight: CGFloat = .zero
     @Binding var label: String
     
-    
     var body: some View {
         HStack {
             Text(label == "" ? "未選択" : label)

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct GoodsBase {
+struct GoodsBase: Decodable {
     var title: Title?
     var product: Product?
     var category1: Category?
@@ -31,16 +31,48 @@ class MyGoodsPostViewModel: ObservableObject {
     ///  キャラクター
     @Published var checkList = [CheckCharacter]()
     @Published var selectCharacters = [Character]()
+    private var goodsID: String?
+    var goodsCharactersID = [String]()
     
+    init() {}
+    
+    init(baseData: GoodsBase, images: [UIImage], counts: [Count]) {
+        self.baseData = baseData
+        self.images = images
+        self.counts = counts
+    }
+    
+    
+    func get() {
+        guard let id = goodsID else { return }
+        
+        firebase.getGoodsCharacters(id: id) { characters in
+            guard let characters = characters else { return }
+            self.goodsCharactersID = characters
+        }
+    }
     /// チェックリスト用の配列を作成
     func makeCheckList() {
-        road = true
+        
         checkList.removeAll()
+        
         guard let title = baseData.title else { return }
+        
         firebase.getCharacters(titleID: title.id) { characters in
-            if 0 < self.selectCharacters.count {
-                for character in characters {
-                    var check = false
+            guard let characters = characters else { return }
+            for character in characters {
+                var check = false
+                
+                if self.selectCharacters.count == 0 {
+                    for checkCharacter in self.goodsCharactersID {
+                        if checkCharacter == character.id {
+                            self.checkList.append(
+                                CheckCharacter(character: character, isCheck: true))
+                            check = true
+                            continue
+                        }
+                    }
+                } else {
                     for item in self.selectCharacters {
                         if character.id == item.id {
                             self.checkList.append(
@@ -49,15 +81,12 @@ class MyGoodsPostViewModel: ObservableObject {
                             continue
                         }
                     }
-                    if check { continue }
-                    self.checkList.append(CheckCharacter(character))
-                    
                 }
-            } else {
-                for character in characters {
-                    self.checkList.append(CheckCharacter(character))
-                }
+                if check { continue }
+                self.checkList.append(CheckCharacter(character))
+                
             }
+            print("ここ?4")
             self.road = false
         }
     }
@@ -72,17 +101,21 @@ class MyGoodsPostViewModel: ObservableObject {
     }
 
     func checkGoods() {
-        firebase.checkGoods(baseData: baseData) { goodsID in
-            guard let goodsID = goodsID else { return }
-            if goodsID.count == 0 {
+        road = true
+        firebase.checkGoods(baseData: baseData) { goods in
+            guard let goods = goods else {
                 self.postNewGoods()
+                return
             }
+            self.goodsID = goods.id
+            self.makeCheckList()
+            self.get()
         }
     }
-    
+ 
     func postGoodsCharacters() {
-        firebase.checkGoods(baseData: baseData) { goodsID in
-            guard let goodsID = goodsID else { return }
+        firebase.checkGoods(baseData: baseData) { goods in
+            guard let goods = goods else { return }
             
             var characters = [String]()
             for character in self.selectCharacters {
@@ -91,7 +124,7 @@ class MyGoodsPostViewModel: ObservableObject {
             
             let data = ["characters" : characters]
             self.firebase
-                .addData(collectionID: "goods/" + goodsID[0] + "/characters", data: data)
+                .addData(collectionID: "goods/" + goods.id + "/characters", data: data)
         }
     }
     
@@ -99,20 +132,17 @@ class MyGoodsPostViewModel: ObservableObject {
     func postNewGoods() {
         guard let title = baseData.title else { return }
         guard let product = baseData.product else { return }
-        
         var category1ID = ""
         var category2ID = ""
-        if let category1 = baseData.category1 { category1ID = category1.id}
-        if let category2 = baseData.category2 { category2ID = category2.id}
-
+        if let category1 = baseData.category1 { category1ID = category1.id }
+        if let category2 = baseData.category2 { category2ID = category2.id }
         
         let data = ["title" : title.id,
                     "product" : product.id,
                     "category1" : category1ID,
                     "category2" : category2ID] as [String: Any]
-        
         firebase.addData(collectionID: "goods", data: data)
-        
+        makeCheckList()
     }
     
     func makeCountsList() {
@@ -147,18 +177,15 @@ class MyGoodsPostViewModel: ObservableObject {
         if let category1 = baseData.category1 { category1ID = category1.id}
         if let category2 = baseData.category2 { category2ID = category2.id}
         
-        firebase.checkGoods(baseData: baseData) { goodsID in
-            guard let goodsID = goodsID else { return }
-            if goodsID.count == 0 { return }
-            let documentID = goodsID[0]
+        firebase.checkGoods(baseData: baseData) { goods in
+            guard let goods = goods else { return }
+            let documentID = goods.id
             
             let userID = user.uid
-            
+           
             self.storage.uploadImages(images: self.images, uid: userID, id: documentID) { urlStrings in
                 var imageStrings = [String]()
                 if let urlStrings = urlStrings { imageStrings = urlStrings }
-                
-                print(imageStrings)
                 
 
                 let data = ["title" : title.id,
@@ -169,31 +196,39 @@ class MyGoodsPostViewModel: ObservableObject {
                 
                 let collectionID = "users/" + userID + "/myGoods"
 
+                
+                if self.goodsCharactersID.count == 0 {
+                    let collectionID = "goods/" + documentID + "/characters"
+                    
+                    for counts in self.self.counts {
+                        
+                        self.firebase.setData(collectionID: collectionID,
+                                              documentID: counts.character.id,
+                                              data: [:])
+                        
+                    }
+                }
+                
                 self.firebase.setData(collectionID: collectionID,
                                       documentID: documentID, data: data) {
                     
+                    let collectionID = collectionID + "/" + documentID + "/characters"
                     
-                    var characterCounts = [[String: Any]]()
                     for count in self.counts {
-                        let data = ["character" : count.character.id,
-                                    "possesion": count.possession,
+                        let data = ["possesion": count.possession,
                                     "strayChild" : count.reservation.strayChild,
                                     "trading" : count.reservation.trading,
                                     "target" : count.target] as [String: Any]
-                        characterCounts.append(data)
+                        
+                        self.firebase.setData(collectionID: collectionID,
+                                              documentID: count.character.id,
+                                              data: data)
                     }
-                    self.firebase.addData(collectionID: collectionID + "/" + documentID + "/characters", data: characterCounts)
+                    
                 }
-                
-
-                
-                
             }
         }
         
     }
-    
-    func postMyGoods(titleID: String, productID: String, images: String) {
 
-    }
 }

@@ -17,13 +17,13 @@ struct TitleMyGoods: Identifiable, Decodable {
 struct ProductMyGoods: Identifiable, Decodable {
     let id: String
     let name: String
-    var goods: [MyGoods]
+    var categorys = [CategoryMyGoods]()
 }
 
 struct CategoryMyGoods: Identifiable, Decodable {
     let id: String
-    let name: String
-    var goods: [MyGoods]
+    var name: String = ""
+    var goods: MyGoods
 }
 
 
@@ -37,7 +37,7 @@ class GoodsListViewModel: ObservableObject {
     @Published var isShowInfo = false
     @Published var myList = MyList.title
     @Published var selectProduct: ProductMyGoods?
-
+    @Published var goodsList = [CategoryMyGoods]()
     
     init() {
         firebase.getTitles() { titles in
@@ -46,69 +46,82 @@ class GoodsListViewModel: ObservableObject {
         }
     }
 
+
+    
     func getMyGoods() {
-        
         for title in titles {
             var titleProducts = [ProductMyGoods]()
             
-            firebase.getTitleMyGoods(titleID: title.id) { goodsList in
+            firebase.getMyGoods(titleID: title.id) { goodsList in
                 guard let goodsList = goodsList else { return }
                 
-                var products : Set<String> = []
+                var products = [Product]()
                 
                 for goods in goodsList {
-                    products.insert(goods.product)
-                }
-                
-                for product in products {
-                    var productGoods = [MyGoods]()
-                    
-                    for goods in goodsList {
-                        if product != goods.product { continue }
-                        productGoods.append(goods)
-                    }
-                    
-                    
-                    self.firebase.getProductName(titleID: title.id, id: product) { name in
-                        let item = ProductMyGoods(id: product,name: name, goods: productGoods)
-                        titleProducts.append(item)
-                        
-                        if products.count == titleProducts.count {
-                            let item = TitleMyGoods(id: title.id, title: title, products: titleProducts)
-                            self.titleMyGoods.append(item)
+                    if let product = goods.base.product {
+                        if !products.contains(where: {$0.id == product.id}) {
+                            products.append(product)
                         }
                     }
                 }
+
+                for product in products {
+                    var categoryGoods = [CategoryMyGoods]()
+                    
+                    for goods in goodsList {
+                        guard let goodsProduct = goods.base.product else { continue }
+                        if product.id != goodsProduct.id { continue }
+                        
+                        let item = CategoryMyGoods(id: goods.id, goods: goods)
+                        categoryGoods.append(item)
+                    }
+                    
+                    
+                    let item = ProductMyGoods(id: product.id,
+                                              name: product.name,
+                                              categorys: categoryGoods)
+                    
+                    titleProducts.append(item)
+                    
+                    if products.count == titleProducts.count {
+                        let item = TitleMyGoods(id: title.id, title: title, products: titleProducts)
+                        self.titleMyGoods.append(item)
+                        self.titleMyGoods.sort(by: {$0.title.name < $1.title.name})
+                    }
+
+                }
             }
+            
         }
         
     }
     
     func getCategory() {
         guard let product = selectProduct else { return }
-        let productID = product.id
-
-        for goods in product.goods {
+        goodsList.removeAll()
+        
+        for category in product.categorys {
+            let goodsID = category.goods.id
+            let base = category.goods.base
+            let goods = MyGoods(id: goodsID, base: base)
+            
             var label = ""
             
-            if goods.category1 == "" { return }
-            firebase.getCategory1Name(productID: productID, id: goods.category1) { category in
-                label = category
+            if let category1 = base.category1 {
+                if category1.id != "" { label += (category1.name + " ") }
             }
             
-            if goods.category2 == "" { return }
-            
-            firebase.getCategory2Name(productID: productID, category1ID: goods.category1,
-                                      id: goods.category2) { category in
-                label += " "
-                label += category
+            if let category2 = base.category2 {
+                if category2.id != "" { label += category2.name }
             }
             
+            let item = CategoryMyGoods(id: goodsID, name: label, goods: goods)
+            self.goodsList.append(item)
             
+            print("-------------------------")
+            print(item)
+            self.goodsList.sort{ $0.name < $1.name }
         }
-        
-        
-        
         
     }
 }

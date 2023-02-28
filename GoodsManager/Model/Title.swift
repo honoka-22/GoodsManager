@@ -7,7 +7,7 @@
 
 import FirebaseFirestoreSwift
 
-struct Title: Identifiable, Codable {
+struct Title: Identifiable, Decodable {
     let id: String
     var name: String       // 作品名
     var shortName: String   // 略称

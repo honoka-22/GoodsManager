@@ -24,12 +24,15 @@ struct SearchField: View {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.gray)
-                }
+                }.padding(.horizontal)
             }
         }
+        
         .frame(height: 30)
+        .background(.white)
+        .cornerRadius(5)
         .overlay(RoundedRectangle(cornerRadius: 5)
-                .stroke(Color.gray, lineWidth: 1))
+            .stroke(Color(UIColor.secondaryLabel), lineWidth: 0.3))
         
     }
 }
