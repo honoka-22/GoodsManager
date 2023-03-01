@@ -55,8 +55,10 @@ struct SignUpView: View {
                 }
                 
                 // パスワード・メールアドレスの入力チェック
-                viewModel.register(withEmail: mail,
-                                   password: password)
+                viewModel.register(
+                    withEmail: mail,
+                    password: password)
+                isShow.toggle()
             }.padding()
             
             

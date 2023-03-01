@@ -71,6 +71,7 @@ class  AuthViewModel: ObservableObject {
                     return
                 }
                 self.errorMessage = "送信に成功しました"
+                
             })
             
             
